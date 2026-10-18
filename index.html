@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PropertyG Kusmara - Kusmara Mainpuri me Plot Portal</title>
+<meta name="description" content="Kusmara Mainpuri me verified plots, direct owner deal.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#155EEF">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;font-family:Inter}body{margin:0;background:#f1f5f9}
+.header{background:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
+.logo{color:#155EEF;font-weight:800;font-size:28px;line-height:.9}.logo span{font-size:11px;color:#64748b;display:block;font-weight:400}
+.card{background:#fff;border-radius:20px;padding:14px;margin:12px;box-shadow:0 8px 24px #0001}
+.badge{position:absolute;top:10px;left:10px;background:#155EEF;color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;font-weight:700;background:#155EEF;color:#fff;font-size:15px}
+.btn-outline{flex:1;border:1.5px solid #155EEF;color:#155EEF;background:#fff;padding:14px;border-radius:12px;font-weight:700}
+input,textarea,select{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin:7px 0;font-size:14px}
+.hidden{display:none!important}
+.otp-box{background:#f0fdf4;border:1px solid #22c55e;padding:12px;border-radius:12px;text-align:center;margin:10px 0}
+.choice-btn{padding:18px;border-radius:16px;border:2px solid #e2e8f0;background:#fff;font-weight:800;width:100%;text-align:left}
+.img-box{position:relative;border-radius:16px;overflow:hidden}.img-box img{width:100%;height:220px;object-fit:cover}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #e2e8f0}
+</style>
+</head>
+<body>
+<div class="header"><div class="logo">PropertyG<span>Kusmara plots</span></div><div style="font-size:11px;color:#22c55e;font-weight:700">● Live</div></div>
+
+<div id="loginSection" class="card">
+<div style="text-align:center"><b style="font-size:24px">PropertyG</b><br><small>Kusmara ka apna Portal</small></div>
+<div id="step1" style="margin-top:12px">
+<input id="userName" placeholder="Aapka naam">
+<input id="userPhone" placeholder="Mobile - 10 digit" maxlength="10" type="tel">
+<button class="btn" onclick="sendOTP()">OTP Bhejo</button>
+</div>
+<div id="step2" class="hidden">
+<div class="otp-box"><b id="otpDisplay" style="font-size:22px;letter-spacing:5px">----</b><br><small>Testing OTP</small></div>
+<input id="otpInput" placeholder="4 Digit OTP" maxlength="4" style="text-align:center;letter-spacing:6px;font-size:20px">
+<button class="btn" onclick="verifyOTP()">Verify Karo</button>
+</div>
+<div id="adminPassStep" class="hidden">
+<input id="adminPassInput" type="password" placeholder="Admin Password">
+<button class="btn" onclick="checkAdminPass()">Login as Admin</button>
+</div>
+<div id="step3" class="hidden">
+<p style="font-weight:800">Aap kya karna chahte ho?</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button class="choice-btn" onclick="showBuyer()">🏡<br>KHAREEDNA<br><small>Buyer</small></button>
+<button class="choice-btn" onclick="showSeller()">📤<br>BECHNA<br><small>Seller</small></button>
+</div>
+</div>
+</div>
+
+<div id="buyerSection" class="hidden"><div id="buyerList"></div><button onclick="logout()" style="border:none;background:none;width:100%;color:#666;margin:20px">Logout</button></div>
+<div id="sellerSection" class="hidden"><div class="card"><h3>📤 Plot Bechna Hai</h3><select id="s_type"><option>Residential Plot</option><option>Agricultural Land</option></select><input id="s_loc" placeholder="Location - Kusmara Bazar"><input id="s_size" placeholder="Size - 100 Gaj"><input id="s_price" placeholder="Rate - 8 Lakh"><input id="s_road" placeholder="Road/Facing"><textarea id="s_desc" placeholder="Aur jankari"></textarea><button class="btn" onclick="sendToWhatsapp()">WhatsApp pe Bhejo</button><button onclick="logout()" style="border:none;background:none;width:100%;color:#666;margin-top:10px">Back</button></div></div>
+<div id="adminSection" class="hidden"><div class="card"><h3>👑 Admin Panel</h3><input id="p_title" placeholder="Title"><input id="p_price" placeholder="Price - 32.5 Lakhs"><input id="p_loc" value="Kusmara, Mainpuri"><textarea id="p_desc" placeholder="East Facing, Gated"></textarea><input type="file" id="p_img" accept="image/*"><p id="status" style="font-size:12px;color:#155EEF"></p><button class="btn" onclick="adminPost()">Post Karo</button></div><div id="adminList"></div><button onclick="logout()" style="border:none;background:none;width:100%;color:#666;margin:20px">Logout</button></div>
+
+<br><br><br>
+<div class="bottom"><div>🏠<br>Home</div><div>🔍<br>Search</div><div>⭐<br>Saved</div><div>👤<br>Profile</div></div>
+
+<script>
+// FIREBASE - YAHI AAPKA DATABASE HAI
+const DB_URL="https://propertyg-469fd-default-rtdb.firebaseio.com/properties.json";
+const ADMIN_NUM="7037338540";
+const ADMIN_PASS="propertyG@0420";
+let generatedOTP="", tempName="", tempPhone="", imgBase64="";
+
+async function compress(file){
+ return new Promise(res=>{
+  const img=new Image(); img.onload=()=>{
+   const c=document.createElement('canvas'); const MAX=900; let w=img.width,h=img.height;
+   if(w>MAX||h>MAX){ if(w>h){ h=h*MAX/w; w=MAX; } else { w=w*MAX/h; h=MAX; } }
+   c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
+   res(c.toDataURL('image/jpeg',0.65));
+  }; img.src=URL.createObjectURL(file);
+ });
+}
+document.getElementById('p_img')?.addEventListener('change',async e=>{ imgBase64=await compress(e.target.files[0]); document.getElementById('status').innerText="Photo Ready ✅"; });
+
+function sendOTP(){
+ let n=document.getElementById('userName').value.trim(), ph=document.getElementById('userPhone').value.trim();
+ if(n.length<2) return alert('Naam likho'); if(ph.length!=10) return alert('10 digit mobile');
+ tempName=n; tempPhone=ph; generatedOTP=Math.floor(1000+Math.random()*9000).toString();
+ document.getElementById('otpDisplay').innerText=generatedOTP;
+ document.getElementById('step1').classList.add('hidden'); document.getElementById('step2').classList.remove('hidden');
+}
+function verifyOTP(){
+ if(document.getElementById('otpInput').value.trim()!==generatedOTP) return alert('Galat OTP');
+ document.getElementById('step2').classList.add('hidden');
+ if(tempPhone===ADMIN_NUM){ document.getElementById('adminPassStep').classList.remove('hidden'); }
+ else { document.getElementById('step3').classList.remove('hidden'); }
+}
+function checkAdminPass(){
+ if(document.getElementById('adminPassInput').value !== ADMIN_PASS) return alert('Galat Password!');
+ hideAllSections(); document.getElementById('adminSection').classList.remove('hidden'); loadPlots('adminList',true);
+}
+function showBuyer(){ hideAllSections(); document.getElementById('buyerSection').classList.remove('hidden'); loadPlots('buyerList',false); }
+function showSeller(){ hideAllSections(); document.getElementById('sellerSection').classList.remove('hidden'); }
+function hideAllSections(){
+ document.getElementById('loginSection').classList.add('hidden');
+ document.getElementById('buyerSection').classList.add('hidden');
+ document.getElementById('sellerSection').classList.add('hidden');
+ document.getElementById('adminSection').classList.add('hidden');
+}
+function sendToWhatsapp(){
+ let loc=document.getElementById('s_loc').value, size=document.getElementById('s_size').value, price=document.getElementById('s_price').value;
+ if(!loc||!price) return alert('Location aur Price bharo');
+ let msg=`*NEW PLOT SELL - KUSMARA*%0AName: ${tempName}%0APhone: ${tempPhone}%0ALocation: ${loc}%0ASize: ${size}%0APrice: ${price}`;
+ window.open('https://wa.me/917037338540?text='+msg,'_blank');
+}
+async function adminPost(){
+ let title=document.getElementById('p_title').value, price=document.getElementById('p_price').value, loc=document.getElementById('p_loc').value, desc=document.getElementById('p_desc').value;
+ if(!title||!price) return alert('Bharo'); 
+ document.getElementById('status').innerText="Posting..."; 
+ await fetch(DB_URL,{method:'POST',body:JSON.stringify({title,price,location:loc,desc,photo:imgBase64,time:Date.now()})});
+ document.getElementById('status').innerText="Live!"; loadPlots('adminList',true);
+}
+async function loadPlots(targetId,isAdmin){
+ const r=await fetch(DB_URL); const data=await r.json(); const el=document.getElementById(targetId); el.innerHTML="";
+ if(!data){ el.innerHTML='<div class="card">Koi plot nahi</div>'; return; }
+ Object.entries(data).reverse().forEach(([key,p])=>{
+  const img=p.photo||'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800';
+  const waMsg=`Hi, ${p.title} - ${p.price} pasand aaya`;
+  const priceShow = p.price.includes('₹') ? p.price : '₹'+p.price;
+  el.innerHTML+=`<div class="card"><div class="img-box"><img src="${img}"><div class="badge">VERIFIED</div></div>
+  <b>${p.title}</b><div style="color:#155EEF;font-weight:800;font-size:20px">${priceShow}</div><small>📍 ${p.location}</small><p style="font-size:13px">${p.desc||''}</p>
+  ${isAdmin?`<button onclick="deletePlot('${key}')" style="background:#fee2e2;color:#b91c1c;border:none;padding:8px 12px;border-radius:8px">Delete</button>`:`<div style="display:flex;gap:8px"><a href="https://wa.me/917037338540?text=${waMsg}" style="flex:1"><button class="btn-outline" style="width:100%">Contact Agent</button></a><a href="https://wa.me/917037338540?text=${waMsg}" style="flex:1"><button class="btn" style="width:100%">WhatsApp</button></a></div>`}
+  </div>`;
+ });
+}
+async function deletePlot(k){ if(!confirm('Delete?')) return; await fetch(`https://propertyg-469fd-default-rtdb.firebaseio.com/properties/${k}.json`,{method:'DELETE'}); loadPlots('adminList',true); }
+function logout(){ localStorage.clear(); location.reload(); }
+</script>
+</body>
+</html>
