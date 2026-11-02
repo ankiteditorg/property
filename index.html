@@ -1,138 +1,657 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta name="monetag" content="c6daa79e3f2e3bcab64f27ed73751f18">
-<script src="https://quge5.com/88/tag.min.js" data-zone="304727" async data-cfasync="false"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PropertyG Kusmara - Kusmara kishni me Plot Portal</title>
-<meta name="description" content="Kusmara Mainpuri me verified plots, direct owner deal.">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#155EEF">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;font-family:Inter}body{margin:0;background:#f1f5f9}
-.header{background:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
-.logo{color:#155EEF;font-weight:800;font-size:28px;line-height:.9}.logo span{font-size:11px;color:#64748b;display:block;font-weight:400}
-.card{background:#fff;border-radius:20px;padding:14px;margin:12px;box-shadow:0 8px 24px #0001}
-.badge{position:absolute;top:10px;left:10px;background:#155EEF;color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700}
-.btn{width:100%;padding:14px;border-radius:12px;border:none;font-weight:700;background:#155EEF;color:#fff;font-size:15px}
-.btn-outline{flex:1;border:1.5px solid #155EEF;color:#155EEF;background:#fff;padding:14px;border-radius:12px;font-weight:700}
-input,textarea,select{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin:7px 0;font-size:14px}
-.hidden{display:none!important}
-.otp-box{background:#f0fdf4;border:1px solid #22c55e;padding:12px;border-radius:12px;text-align:center;margin:10px 0}
-.choice-btn{padding:18px;border-radius:16px;border:2px solid #e2e8f0;background:#fff;font-weight:800;width:100%;text-align:left}
-.img-box{position:relative;border-radius:16px;overflow:hidden}.img-box img{width:100%;height:220px;object-fit:cover}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #e2e8f0}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ludo King Prank Edition</title>
+
+  <!-- ================= MONETAG CODES ================= -->
+  <meta name="monetag" content="c6daa79e3f2e3bcab64f27ed73751f18">
+  <script src="https://quge5.com/88/tag.min.js" data-zone="304727" async data-cfasync="false"></script>
+  <!-- ================================================= -->
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Top Banner Ad Slot */
+    .ad-banner-top {
+      width: 100%;
+      height: 48px;
+      background: #111827;
+      border: 1px dashed #374151;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* Ludo Classic Wooden Outer Rim */
+    .ludo-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #8b4513;
+      padding: 10px;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.8), inset 0 2px 6px rgba(255,255,255,0.25);
+      border: 3px solid #5c2c16;
+    }
+
+    /* 15x15 Matrix Board */
+    .board {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      grid-template-rows: repeat(15, 1fr);
+      position: relative;
+      border: 2px solid #222;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .cell {
+      border: 0.5px solid #d1d5db;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Homes (6x6) */
+    .home-zone {
+      border: 2px solid #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .home-red { grid-column: 1 / 7; grid-row: 1 / 7; background: #dc2626; cursor: pointer; }
+    .home-green { grid-column: 10 / 16; grid-row: 1 / 7; background: #16a34a; }
+    .home-blue { grid-column: 1 / 7; grid-row: 10 / 16; background: #2563eb; }
+    .home-yellow { grid-column: 10 / 16; grid-row: 10 / 16; background: #eab308; }
+
+    .white-box {
+      width: 72%;
+      height: 72%;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 3px solid #111;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      padding: 6px;
+      gap: 6px;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    .base-slot {
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .slot-red { background: #fee2e2; }
+    .slot-green { background: #dcfce7; }
+    .slot-blue { background: #dbeafe; }
+    .slot-yellow { background: #fef9c3; }
+
+    /* Center Triangle Zone (3x3) */
+    .center-zone {
+      grid-column: 7 / 10;
+      grid-row: 7 / 10;
+      position: relative;
+      border: 1px solid #111;
+      background: #1e293b;
+      overflow: hidden;
+    }
+
+    .tri-red {
+      position: absolute;
+      top: 0; left: 0; bottom: 0; width: 50%;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      background: #dc2626;
+    }
+    .tri-green {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 50%;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      background: #16a34a;
+    }
+    .tri-yellow {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; width: 50%;
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      background: #eab308;
+    }
+    .tri-blue {
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 50%;
+      clip-path: polygon(0 100%, 50% 0, 100% 100%);
+      background: #2563eb;
+    }
+
+    /* Pathways and Arrows */
+    .path-red { background: #ef4444 !important; }
+    .path-green { background: #22c55e !important; }
+    .path-yellow { background: #eab308 !important; }
+    .path-blue { background: #3b82f6 !important; }
+
+    .safe-star {
+      font-size: 11px;
+      color: #333;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* Tokens */
+    .token {
+      width: 78%;
+      height: 78%;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.7);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.15s ease;
+      z-index: 10;
+    }
+    .token.t-red { background: radial-gradient(circle at 35% 35%, #ff4b4b, #991b1b); }
+    .token.t-green { background: radial-gradient(circle at 35% 35%, #4ade80, #15803d); }
+    .token.t-yellow { background: radial-gradient(circle at 35% 35%, #fde047, #a16207); }
+    .token.t-blue { background: radial-gradient(circle at 35% 35%, #60a5fa, #1d4ed8); }
+
+    .token.active-bounce {
+      animation: bounce 0.6s infinite alternate ease-in-out;
+      border-color: #facc15;
+    }
+
+    @keyframes bounce {
+      0% { transform: scale(1) translateY(0); }
+      100% { transform: scale(1.18) translateY(-4px); }
+    }
+
+    /* Controls Panel - Dice in EXACT CENTER */
+    .controls-panel {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      background: #111827;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #1f2937;
+    }
+
+    .player-dock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background: #1f2937;
+    }
+
+    .player-dock.active-turn {
+      border-color: #38bdf8;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+      background: #1e293b;
+    }
+
+    .player-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+
+    /* Bada & Centered 3D Dice */
+    .dice-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dice-3d {
+      width: 74px;
+      height: 74px;
+      background: linear-gradient(145deg, #ffffff, #e6e6e6);
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 46px;
+      font-weight: 900;
+      color: #1e293b;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.6), inset 0 2px 4px #ffffff, inset 0 -3px 6px #cbd5e1;
+      border: 3px solid #facc15;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .dice-3d:active {
+      transform: scale(0.92);
+    }
+
+    .dice-rolling {
+      animation: spinDice 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes spinDice {
+      0% { transform: rotate(0deg) scale(0.9); }
+      50% { transform: rotate(180deg) scale(1.15); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    /* Rewarded Button */
+    .btn-reward-ad {
+      width: 100%;
+      background: linear-gradient(135deg, #6366f1, #4338ca);
+      color: #fff;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    }
+
+    .status-text {
+      font-size: 13px;
+      color: #38bdf8;
+      font-weight: 600;
+      text-align: center;
+      min-height: 20px;
+    }
+
+    /* Rewarded Ad Modal */
+    .ad-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .ad-modal-card {
+      background: #1f2937;
+      padding: 24px;
+      border-radius: 16px;
+      max-width: 340px;
+      text-align: center;
+      border: 1px solid #374151;
+    }
+
+    .btn-collect {
+      background: #10b981;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      margin-top: 14px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-<div class="header"><div class="logo">PropertyG<span>Kusmara plots</span></div><div style="font-size:11px;color:#22c55e;font-weight:700">● Live</div></div>
 
-<div id="loginSection" class="card">
-<div style="text-align:center"><b style="font-size:24px">PropertyG</b><br><small>Kusmara ka apna Portal</small></div>
-<div id="step1" style="margin-top:12px">
-<input id="userName" placeholder="Aapka naam">
-<input id="userPhone" placeholder="Mobile - 10 digit" maxlength="10" type="tel">
-<button class="btn" onclick="sendOTP()">OTP Bhejo</button>
-</div>
-<div id="step2" class="hidden">
-<div class="otp-box"><b id="otpDisplay" style="font-size:22px;letter-spacing:5px">----</b><br><small>Testing OTP</small></div>
-<input id="otpInput" placeholder="4 Digit OTP" maxlength="4" style="text-align:center;letter-spacing:6px;font-size:20px">
-<button class="btn" onclick="verifyOTP()">Verify Karo</button>
-</div>
-<div id="adminPassStep" class="hidden">
-<input id="adminPassInput" type="password" placeholder="Admin Password">
-<button class="btn" onclick="checkAdminPass()">Login as Admin</button>
-</div>
-<div id="step3" class="hidden">
-<p style="font-weight:800">Aap kya karna chahte ho?</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<button class="choice-btn" onclick="showBuyer()">🏡<br>KHAREEDNA<br><small>Buyer</small></button>
-<button class="choice-btn" onclick="showSeller()">📤<br>BECHNA<br><small>Seller</small></button>
-</div>
-</div>
+<div class="app-container">
+
+  <!-- Top Banner Ad Area -->
+  <div class="ad-banner-top">
+    <span>📢 Sponsored Banner Ad Area</span>
+  </div>
+
+  <div class="status-text" id="statusMessage">Player 1 (Red) ki baari! Roll karein</div>
+
+  <!-- Wooden Classic Ludo Board -->
+  <div class="ludo-frame">
+    <div class="board" id="ludoBoard">
+
+      <!-- RED HOME ZONE (SECRET CHEAT TRIGGER ON TAPS) -->
+      <div class="home-zone home-red" id="redHomeZone">
+        <div class="white-box">
+          <div class="base-slot slot-red"><div class="token t-red" id="red_0" onclick="handleTokenClick('red', 0)"></div></div>
+          <div class="base-slot slot-red"><div class="token t-red" id="red_1" onclick="handleTokenClick('red', 1)"></div></div>
+          <div class="base-slot slot-red"><div class="token t-red" id="red_2" onclick="handleTokenClick('red', 2)"></div></div>
+          <div class="base-slot slot-red"><div class="token t-red" id="red_3" onclick="handleTokenClick('red', 3)"></div></div>
+        </div>
+      </div>
+
+      <!-- GREEN HOME ZONE -->
+      <div class="home-zone home-green">
+        <div class="white-box">
+          <div class="base-slot slot-green"><div class="token t-green" id="green_0"></div></div>
+          <div class="base-slot slot-green"><div class="token t-green" id="green_1"></div></div>
+          <div class="base-slot slot-green"><div class="token t-green" id="green_2"></div></div>
+          <div class="base-slot slot-green"><div class="token t-green" id="green_3"></div></div>
+        </div>
+      </div>
+
+      <!-- BLUE HOME ZONE -->
+      <div class="home-zone home-blue">
+        <div class="white-box">
+          <div class="base-slot slot-blue"></div>
+          <div class="base-slot slot-blue"></div>
+          <div class="base-slot slot-blue"></div>
+          <div class="base-slot slot-blue"></div>
+        </div>
+      </div>
+
+      <!-- YELLOW HOME ZONE -->
+      <div class="home-zone home-yellow">
+        <div class="white-box">
+          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_0" onclick="handleTokenClick('yellow', 0)"></div></div>
+          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_1" onclick="handleTokenClick('yellow', 1)"></div></div>
+          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_2" onclick="handleTokenClick('yellow', 2)"></div></div>
+          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_3" onclick="handleTokenClick('yellow', 3)"></div></div>
+        </div>
+      </div>
+
+      <!-- CENTER HOME TRIANGLE -->
+      <div class="center-zone">
+        <div class="tri-red"></div>
+        <div class="tri-green"></div>
+        <div class="tri-yellow"></div>
+        <div class="tri-blue"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PLAYER DOCKS & CENTER 3D DICE -->
+  <div class="controls-panel">
+    <!-- Player 1 Red Dock -->
+    <div class="player-dock active-turn" id="dockRed">
+      <span class="player-name">🔴 PLAYER 1 (Red)</span>
+      <span style="font-size: 11px; color:#cbd5e1;">Coins: <b id="p1Coins">1000</b></span>
+    </div>
+
+    <!-- Exact Center Bada 3D Dice -->
+    <div class="dice-container">
+      <div class="dice-3d" id="ludoDice" onclick="rollDice()">⚅</div>
+    </div>
+
+    <!-- Player 2 Yellow Dock -->
+    <div class="player-dock" id="dockYellow">
+      <span class="player-name">🟡 PLAYER 2 (Yellow)</span>
+      <span style="font-size: 11px; color:#cbd5e1;">Coins: <b id="p2Coins">1000</b></span>
+    </div>
+  </div>
+
+  <!-- Monetag Rewarded Ads Button -->
+  <button class="btn-reward-ad" onclick="openRewardedAd()">📺 Ad Dekho (+500 Game Coins)</button>
+
 </div>
 
-<div id="buyerSection" class="hidden"><div id="buyerList"></div><button onclick="logout()" style="border:none;background:none;width:100%;color:#666;margin:20px">Logout</button></div>
-<div id="sellerSection" class="hidden"><div class="card"><h3>📤 Plot Bechna Hai</h3><select id="s_type"><option>Residential Plot</option><option>Agricultural Land</option></select><input id="s_loc" placeholder="Location - Kusmara Bazar"><input id="s_size" placeholder="Size - 100 Gaj"><input id="s_price" placeholder="Rate - 8 Lakh"><input id="s_road" placeholder="Road/Facing"><textarea id="s_desc" placeholder="Aur jankari"></textarea><button class="btn" onclick="sendToWhatsapp()">WhatsApp pe Bhejo</button><button onclick="logout()" style="border:none;background:none;width:100%;color:#666;margin-top:10px">Back</button></div></div>
-<div id="adminSection" class="hidden"><div class="card"><h3>👑 Admin Panel</h3><input id="p_title" placeholder="Title"><input id="p_price" placeholder="Price - 32.5 Lakhs"><input id="p_loc" value="Kusmara, Mainpuri"><textarea id="p_desc" placeholder="East Facing, Gated"></textarea><input type="file" id="p_img" accept="image/*"><p id="status" style="font-size:12px;color:#155EEF"></p><button class="btn" onclick="adminPost()">Post Karo</button></div><div id="adminList"></div><button onclick="logout()" style="border:none;background:none;width:100%;color:#666;margin:20px">Logout</button></div>
-
-<br><br><br>
-<div class="bottom"><div>🏠<br>Home</div><div>🔍<br>Search</div><div>⭐<br>Saved</div><div>👤<br>Profile</div></div>
+<!-- Rewarded Ad Modal -->
+<div id="adModal" class="ad-modal">
+  <div class="ad-modal-card">
+    <h3 style="color:#facc15; margin-bottom:8px;">🤝 Support & Free Coins</h3>
+    <p id="adTimerText" style="color:#cbd5e1; font-size:14px;">Ad chal raha hai: 5s baaki...</p>
+    <div style="background:#111827; padding:18px; border-radius:10px; margin:14px 0; border:1px dashed #4b5563;">
+      <p style="font-size:13px; color:#9ca3af;">Aapka ad dekhna zarooratmand logo ke support mein madad karta hai!</p>
+    </div>
+    <button class="btn-collect" id="btnCollectCoins" style="display:none;" onclick="grantReward()">Coins Collect Karein (+500)</button>
+  </div>
+</div>
 
 <script>
-// FIREBASE - YAHI AAPKA DATABASE HAI
-const DB_URL="https://propertyg-469fd-default-rtdb.firebaseio.com/properties.json";
-const ADMIN_NUM="7037338540";
-const ADMIN_PASS="propertyG@0420";
-let generatedOTP="", tempName="", tempPhone="", imgBase64="";
+  // ==========================================
+  // WEB AUDIO SOUND EFFECTS (No external mp3)
+  // ==========================================
+  let audioCtx = null;
+  function initAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
 
-async function compress(file){
- return new Promise(res=>{
-  const img=new Image(); img.onload=()=>{
-   const c=document.createElement('canvas'); const MAX=900; let w=img.width,h=img.height;
-   if(w>MAX||h>MAX){ if(w>h){ h=h*MAX/w; w=MAX; } else { w=w*MAX/h; h=MAX; } }
-   c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
-   res(c.toDataURL('image/jpeg',0.65));
-  }; img.src=URL.createObjectURL(file);
- });
-}
-document.getElementById('p_img')?.addEventListener('change',async e=>{ imgBase64=await compress(e.target.files[0]); document.getElementById('status').innerText="Photo Ready ✅"; });
+  function playTone(freq, type, duration) {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  }
 
-function sendOTP(){
- let n=document.getElementById('userName').value.trim(), ph=document.getElementById('userPhone').value.trim();
- if(n.length<2) return alert('Naam likho'); if(ph.length!=10) return alert('10 digit mobile');
- tempName=n; tempPhone=ph; generatedOTP=Math.floor(1000+Math.random()*9000).toString();
- document.getElementById('otpDisplay').innerText=generatedOTP;
- document.getElementById('step1').classList.add('hidden'); document.getElementById('step2').classList.remove('hidden');
-}
-function verifyOTP(){
- if(document.getElementById('otpInput').value.trim()!==generatedOTP) return alert('Galat OTP');
- document.getElementById('step2').classList.add('hidden');
- if(tempPhone===ADMIN_NUM){ document.getElementById('adminPassStep').classList.remove('hidden'); }
- else { document.getElementById('step3').classList.remove('hidden'); }
-}
-function checkAdminPass(){
- if(document.getElementById('adminPassInput').value !== ADMIN_PASS) return alert('Galat Password!');
- hideAllSections(); document.getElementById('adminSection').classList.remove('hidden'); loadPlots('adminList',true);
-}
-function showBuyer(){ hideAllSections(); document.getElementById('buyerSection').classList.remove('hidden'); loadPlots('buyerList',false); }
-function showSeller(){ hideAllSections(); document.getElementById('sellerSection').classList.remove('hidden'); }
-function hideAllSections(){
- document.getElementById('loginSection').classList.add('hidden');
- document.getElementById('buyerSection').classList.add('hidden');
- document.getElementById('sellerSection').classList.add('hidden');
- document.getElementById('adminSection').classList.add('hidden');
-}
-function sendToWhatsapp(){
- let loc=document.getElementById('s_loc').value, size=document.getElementById('s_size').value, price=document.getElementById('s_price').value;
- if(!loc||!price) return alert('Location aur Price bharo');
- let msg=`*NEW PLOT SELL - KUSMARA*%0AName: ${tempName}%0APhone: ${tempPhone}%0ALocation: ${loc}%0ASize: ${size}%0APrice: ${price}`;
- window.open('https://wa.me/917037338540?text='+msg,'_blank');
-}
-async function adminPost(){
- let title=document.getElementById('p_title').value, price=document.getElementById('p_price').value, loc=document.getElementById('p_loc').value, desc=document.getElementById('p_desc').value;
- if(!title||!price) return alert('Bharo'); 
- document.getElementById('status').innerText="Posting..."; 
- await fetch(DB_URL,{method:'POST',body:JSON.stringify({title,price,location:loc,desc,photo:imgBase64,time:Date.now()})});
- document.getElementById('status').innerText="Live!"; loadPlots('adminList',true);
-}
-async function loadPlots(targetId,isAdmin){
- const r=await fetch(DB_URL); const data=await r.json(); const el=document.getElementById(targetId); el.innerHTML="";
- if(!data){ el.innerHTML='<div class="card">Koi plot nahi</div>'; return; }
- Object.entries(data).reverse().forEach(([key,p])=>{
-  const img=p.photo||'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800';
-  const waMsg=`Hi, ${p.title} - ${p.price} pasand aaya`;
-  const priceShow = p.price.includes('₹') ? p.price : '₹'+p.price;
-  el.innerHTML+=`<div class="card"><div class="img-box"><img src="${img}"><div class="badge">VERIFIED</div></div>
-  <b>${p.title}</b><div style="color:#155EEF;font-weight:800;font-size:20px">${priceShow}</div><small>📍 ${p.location}</small><p style="font-size:13px">${p.desc||''}</p>
-  ${isAdmin?`<button onclick="deletePlot('${key}')" style="background:#fee2e2;color:#b91c1c;border:none;padding:8px 12px;border-radius:8px">Delete</button>`:`<div style="display:flex;gap:8px"><a href="https://wa.me/917037338540?text=${waMsg}" style="flex:1"><button class="btn-outline" style="width:100%">Contact Agent</button></a><a href="https://wa.me/917037338540?text=${waMsg}" style="flex:1"><button class="btn" style="width:100%">WhatsApp</button></a></div>`}
-  </div>`;
- });
-}
-async function deletePlot(k){ if(!confirm('Delete?')) return; await fetch(`https://propertyg-469fd-default-rtdb.firebaseio.com/properties/${k}.json`,{method:'DELETE'}); loadPlots('adminList',true); }
-function logout(){ localStorage.clear(); location.reload(); }
+  function playDiceSound() {
+    initAudio();
+    for(let i = 0; i < 4; i++) {
+      setTimeout(() => playTone(240 + Math.random()*150, "triangle", 0.08), i * 70);
+    }
+  }
+
+  function playMoveSound() {
+    playTone(520, "sine", 0.12);
+  }
+
+  // ==========================================
+  // 15x15 LUDO PATH CELLS MATRIX SETUP
+  // ==========================================
+  const boardEl = document.getElementById("ludoBoard");
+
+  // Track map for Ludo paths
+  const specialCells = {
+    "1_8": "path-green", "2_8": "path-green", "3_8": "path-green", "4_8": "path-green", "5_8": "path-green", "2_9": "path-green",
+    "8_1": "path-red", "8_2": "path-red", "8_3": "path-red", "8_4": "path-red", "8_5": "path-red", "7_2": "path-red",
+    "9_14": "path-yellow", "8_13": "path-yellow", "8_12": "path-yellow", "8_11": "path-yellow", "8_10": "path-yellow", "8_9": "path-yellow",
+    "14_7": "path-blue", "13_8": "path-blue", "12_8": "path-blue", "11_8": "path-blue", "10_8": "path-blue", "9_8": "path-blue"
+  };
+
+  const starCells = ["7_2", "2_9", "9_14", "14_7", "3_7", "7_13", "13_9", "9_3"];
+
+  for (let r = 1; r <= 15; r++) {
+    for (let c = 1; c <= 15; c++) {
+      // Skip home corners & center
+      if ((r <= 6 && c <= 6) || (r <= 6 && c >= 10) || (r >= 10 && c <= 6) || (r >= 10 && c >= 10) || (r >= 7 && r <= 9 && c >= 7 && c <= 9)) {
+        continue;
+      }
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.style.gridRow = r;
+      cell.style.gridColumn = c;
+      const key = `${r}_${c}`;
+
+      if (specialCells[key]) cell.classList.add(specialCells[key]);
+      if (starCells.includes(key)) {
+        const star = document.createElement("span");
+        star.className = "safe-star";
+        star.innerText = "★";
+        cell.appendChild(star);
+      }
+      boardEl.appendChild(cell);
+    }
+  }
+
+  // ==========================================
+  // GAMEPLAY & STEALTH CHEAT SYSTEM
+  // ==========================================
+  const diceSymbols = ["", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+  let currentTurn = 'red'; // 'red' or 'yellow'
+  let isRolling = false;
+  let lastDiceValue = 6;
+  let redTapCheatCounter = 0;
+  let cheatTimeout = null;
+
+  let p1Coins = 1000;
+  let p2Coins = 1000;
+
+  const diceEl = document.getElementById("ludoDice");
+  const statusEl = document.getElementById("statusMessage");
+  const dockRed = document.getElementById("dockRed");
+  const dockYellow = document.getElementById("dockYellow");
+  const redHomeZone = document.getElementById("redHomeZone");
+
+  // STEALTH CHEAT: Red Home Zone me jitni baar tap karoge, theek wahi aayega (1 se 6)
+  redHomeZone.addEventListener("click", (e) => {
+    // Agar token click nahi hua hai toh cheat counter count karein
+    if (e.target.classList.contains("token")) return;
+
+    redTapCheatCounter++;
+    if (redTapCheatCounter > 6) redTapCheatCounter = 1;
+
+    // Halka sa vibration secret confirmation ke liye
+    if (navigator.vibrate) navigator.vibrate(18);
+
+    clearTimeout(cheatTimeout);
+    // 5 second ke andar dice nahi ghuma toh counter reset
+    cheatTimeout = setTimeout(() => {
+      redTapCheatCounter = 0;
+    }, 5000);
+  });
+
+  function rollDice() {
+    if (isRolling) return;
+    isRolling = true;
+    playDiceSound();
+
+    diceEl.classList.add("dice-rolling");
+
+    let finalRoll = Math.floor(Math.random() * 6) + 1;
+
+    // PRANK CHEAT TRIGGER: Agar Red ka turn hai aur secret taps kiye hain
+    if (currentTurn === 'red' && redTapCheatCounter > 0) {
+      finalRoll = redTapCheatCounter;
+      redTapCheatCounter = 0; // use ho gaya, ab reset
+    }
+
+    setTimeout(() => {
+      diceEl.classList.remove("dice-rolling");
+      diceEl.innerText = diceSymbols[finalRoll];
+      lastDiceValue = finalRoll;
+      isRolling = false;
+
+      statusEl.innerText = `${currentTurn === 'red' ? 'Player 1' : 'Player 2'} ne ${finalRoll} laya! Token chalein.`;
+
+      // Token animation activate
+      highlightTokens(currentTurn);
+
+      // Agar roll 6 na ho aur token na chale toh switch turn
+      setTimeout(() => {
+        switchTurn();
+      }, 1500);
+    }, 450);
+  }
+
+  function highlightTokens(color) {
+    for (let i = 0; i < 4; i++) {
+      const tok = document.getElementById(`${color}_${i}`);
+      if (tok) tok.classList.add("active-bounce");
+    }
+  }
+
+  function handleTokenClick(color, idx) {
+    if (currentTurn !== color) return;
+    playMoveSound();
+
+    for (let i = 0; i < 4; i++) {
+      const tok = document.getElementById(`${color}_${i}`);
+      if (tok) tok.classList.remove("active-bounce");
+    }
+
+    statusEl.innerText = `${color === 'red' ? 'Player 1' : 'Player 2'} ka token move hua!`;
+    switchTurn();
+  }
+
+  function switchTurn() {
+    currentTurn = (currentTurn === 'red') ? 'yellow' : 'red';
+    dockRed.classList.toggle("active-turn", currentTurn === 'red');
+    dockYellow.classList.toggle("active-turn", currentTurn === 'yellow');
+    statusEl.innerText = `${currentTurn === 'red' ? 'Player 1 (Red)' : 'Player 2 (Yellow)'} ki baari! Roll karein.`;
+  }
+
+  // ==========================================
+  // MONETAG REWARDED AD SYSTEM
+  // ==========================================
+  const adModal = document.getElementById("adModal");
+  const adTimerText = document.getElementById("adTimerText");
+  const btnCollectCoins = document.getElementById("btnCollectCoins");
+  let countdown = 5;
+  let timerId = null;
+
+  function openRewardedAd() {
+    // Optional: Agar Monetag ka direct link yahan open karna chahein:
+    // window.open("APNA_MONETAG_DIRECT_LINK", "_blank");
+
+    countdown = 5;
+    btnCollectCoins.style.display = "none";
+    adTimerText.innerText = `Ad chal raha hai: ${countdown}s baaki...`;
+    adModal.style.display = "flex";
+
+    timerId = setInterval(() => {
+      countdown--;
+      if (countdown > 0) {
+        adTimerText.innerText = `Ad chal raha hai: ${countdown}s baaki...`;
+      } else {
+        clearInterval(timerId);
+        adTimerText.innerText = "Ad pura dekhne ke liye shukriya!";
+        btnCollectCoins.style.display = "inline-block";
+      }
+    }, 1000);
+  }
+
+  function grantReward() {
+    adModal.style.display = "none";
+    playTone(650, "sine", 0.3);
+
+    if (currentTurn === 'red') {
+      p1Coins += 500;
+      document.getElementById("p1Coins").innerText = p1Coins;
+    } else {
+      p2Coins += 500;
+      document.getElementById("p2Coins").innerText = p2Coins;
+    }
+
+    statusEl.innerText = `🎉 500 Free Coins credit ho gaye!`;
+  }
 </script>
+
 </body>
 </html>
