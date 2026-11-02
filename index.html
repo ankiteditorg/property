@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Ludo King Prank Edition</title>
 
-  <!-- ================= MONETAG CODES ================= -->
+  <!-- ================= MONETAG VERIFICATION ================= -->
   <meta name="monetag" content="c6daa79e3f2e3bcab64f27ed73751f18">
-  <script src="https://quge5.com/88/tag.min.js" data-zone="304727" async data-cfasync="false"></script>
-  <!-- ================================================= -->
+  <!-- ======================================================== -->
 
   <style>
     * {
@@ -28,6 +27,7 @@
       align-items: center;
       min-height: 100vh;
       padding: 10px;
+      overflow-x: hidden;
     }
 
     .app-container {
@@ -39,10 +39,10 @@
       gap: 10px;
     }
 
-    /* Top Banner Ad Slot */
+    /* Top Banner */
     .ad-banner-top {
       width: 100%;
-      height: 48px;
+      height: 44px;
       background: #111827;
       border: 1px dashed #374151;
       border-radius: 8px;
@@ -86,7 +86,7 @@
       align-items: center;
     }
 
-    /* Homes (6x6) */
+    /* Home Bases (6x6) */
     .home-zone {
       border: 2px solid #111;
       display: flex;
@@ -129,7 +129,7 @@
     .slot-blue { background: #dbeafe; }
     .slot-yellow { background: #fef9c3; }
 
-    /* Center Triangle Zone (3x3) */
+    /* Center Triangle Zone */
     .center-zone {
       grid-column: 7 / 10;
       grid-row: 7 / 10;
@@ -164,7 +164,7 @@
       background: #2563eb;
     }
 
-    /* Pathways and Arrows */
+    /* Colored Tracks */
     .path-red { background: #ef4444 !important; }
     .path-green { background: #22c55e !important; }
     .path-yellow { background: #eab308 !important; }
@@ -204,7 +204,7 @@
       100% { transform: scale(1.18) translateY(-4px); }
     }
 
-    /* Controls Panel - Dice in EXACT CENTER */
+    /* Controls Panel - Center 3D Dice */
     .controls-panel {
       width: 100%;
       display: grid;
@@ -240,7 +240,6 @@
       color: #94a3b8;
     }
 
-    /* Bada & Centered 3D Dice */
     .dice-container {
       display: flex;
       flex-direction: column;
@@ -279,7 +278,14 @@
       100% { transform: rotate(360deg) scale(1); }
     }
 
-    /* Rewarded Button */
+    .status-text {
+      font-size: 13px;
+      color: #38bdf8;
+      font-weight: 600;
+      text-align: center;
+      min-height: 20px;
+    }
+
     .btn-reward-ad {
       width: 100%;
       background: linear-gradient(135deg, #6366f1, #4338ca);
@@ -293,365 +299,83 @@
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
     }
 
-    .status-text {
-      font-size: 13px;
-      color: #38bdf8;
-      font-weight: 600;
-      text-align: center;
-      min-height: 20px;
-    }
-
-    /* Rewarded Ad Modal */
-    .ad-modal {
-      display: none;
+    /* 30-SECOND GAME LOCKER OVERLAY */
+    .game-locker-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 9999;
+      background: rgba(10, 15, 29, 0.96);
+      z-index: 99999;
+      display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 20px;
-    }
-
-    .ad-modal-card {
-      background: #1f2937;
-      padding: 24px;
-      border-radius: 16px;
-      max-width: 340px;
       text-align: center;
-      border: 1px solid #374151;
     }
 
-    .btn-collect {
-      background: #10b981;
+    .locker-card {
+      background: #1e293b;
+      border: 2px solid #facc15;
+      border-radius: 20px;
+      padding: 26px 20px;
+      max-width: 360px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+      width: 100%;
+    }
+
+    .btn-unlock {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
       color: #fff;
+      font-weight: 800;
       border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 700;
-      margin-top: 14px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
       cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(239,68,68,0.5);
+    }
+
+    .btn-play-ready {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-weight: 800;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5);
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.03); }
     }
   </style>
 </head>
 <body>
 
-<div class="app-container">
+<!-- 30-SECOND OFFER LOCKER -->
+<div id="gameLocker" class="game-locker-modal">
+  <div class="locker-card">
+    <div style="font-size: 46px; margin-bottom: 8px;">🎲🔒</div>
+    <h2 style="color: #facc15; font-size: 20px; margin-bottom: 6px;">Ludo Game Locked</h2>
+    <p style="color: #cbd5e1; font-size: 13px; line-height: 1.5; margin-bottom: 18px;">
+      Game unlock karne ke liye sponsor offer open karein aur <b>30 seconds</b> check karein!
+    </p>
 
-  <!-- Top Banner Ad Area -->
-  <div class="ad-banner-top">
-    <span>📢 Sponsored Banner Ad Area</span>
-  </div>
+    <!-- Sponsor Button -->
+    <button id="btnOpenAdOffer" class="btn-unlock" onclick="startOfferUnlock()">
+      👉 Sponsor Ad Kholein & Unlock Karein
+    </button>
 
-  <div class="status-text" id="statusMessage">Player 1 (Red) ki baari! Roll karein</div>
-
-  <!-- Wooden Classic Ludo Board -->
-  <div class="ludo-frame">
-    <div class="board" id="ludoBoard">
-
-      <!-- RED HOME ZONE (SECRET CHEAT TRIGGER ON TAPS) -->
-      <div class="home-zone home-red" id="redHomeZone">
-        <div class="white-box">
-          <div class="base-slot slot-red"><div class="token t-red" id="red_0" onclick="handleTokenClick('red', 0)"></div></div>
-          <div class="base-slot slot-red"><div class="token t-red" id="red_1" onclick="handleTokenClick('red', 1)"></div></div>
-          <div class="base-slot slot-red"><div class="token t-red" id="red_2" onclick="handleTokenClick('red', 2)"></div></div>
-          <div class="base-slot slot-red"><div class="token t-red" id="red_3" onclick="handleTokenClick('red', 3)"></div></div>
-        </div>
+    <!-- Countdown & Progress Bar -->
+    <div id="unlockCountdownBox" style="display:none; margin-top:16px;">
+      <p id="unlockTimerText" style="color:#38bdf8; font-size:15px; font-weight:700;">Verifying... 30s bache hain</p>
+      <div style="width:100%; background:#334155; height:8px; border-radius:6px; margin-top:10px; overflow:hidden;">
+        <div id="timerBar" style="width:0%; height:100%; background:#10b981; transition:width 1s linear;"></div>
       </div>
-
-      <!-- GREEN HOME ZONE -->
-      <div class="home-zone home-green">
-        <div class="white-box">
-          <div class="base-slot slot-green"><div class="token t-green" id="green_0"></div></div>
-          <div class="base-slot slot-green"><div class="token t-green" id="green_1"></div></div>
-          <div class="base-slot slot-green"><div class="token t-green" id="green_2"></div></div>
-          <div class="base-slot slot-green"><div class="token t-green" id="green_3"></div></div>
-        </div>
-      </div>
-
-      <!-- BLUE HOME ZONE -->
-      <div class="home-zone home-blue">
-        <div class="white-box">
-          <div class="base-slot slot-blue"></div>
-          <div class="base-slot slot-blue"></div>
-          <div class="base-slot slot-blue"></div>
-          <div class="base-slot slot-blue"></div>
-        </div>
-      </div>
-
-      <!-- YELLOW HOME ZONE -->
-      <div class="home-zone home-yellow">
-        <div class="white-box">
-          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_0" onclick="handleTokenClick('yellow', 0)"></div></div>
-          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_1" onclick="handleTokenClick('yellow', 1)"></div></div>
-          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_2" onclick="handleTokenClick('yellow', 2)"></div></div>
-          <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_3" onclick="handleTokenClick('yellow', 3)"></div></div>
-        </div>
-      </div>
-
-      <!-- CENTER HOME TRIANGLE -->
-      <div class="center-zone">
-        <div class="tri-red"></div>
-        <div class="tri-green"></div>
-        <div class="tri-yellow"></div>
-        <div class="tri-blue"></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- PLAYER DOCKS & CENTER 3D DICE -->
-  <div class="controls-panel">
-    <!-- Player 1 Red Dock -->
-    <div class="player-dock active-turn" id="dockRed">
-      <span class="player-name">🔴 PLAYER 1 (Red)</span>
-      <span style="font-size: 11px; color:#cbd5e1;">Coins: <b id="p1Coins">1000</b></span>
-    </div>
-
-    <!-- Exact Center Bada 3D Dice -->
-    <div class="dice-container">
-      <div class="dice-3d" id="ludoDice" onclick="rollDice()">⚅</div>
-    </div>
-
-    <!-- Player 2 Yellow Dock -->
-    <div class="player-dock" id="dockYellow">
-      <span class="player-name">🟡 PLAYER 2 (Yellow)</span>
-      <span style="font-size: 11px; color:#cbd5e1;">Coins: <b id="p2Coins">1000</b></span>
-    </div>
-  </div>
-
-  <!-- Monetag Rewarded Ads Button -->
-  <button class="btn-reward-ad" onclick="openRewardedAd()">📺 Ad Dekho (+500 Game Coins)</button>
-
-</div>
-
-<!-- Rewarded Ad Modal -->
-<div id="adModal" class="ad-modal">
-  <div class="ad-modal-card">
-    <h3 style="color:#facc15; margin-bottom:8px;">🤝 Support & Free Coins</h3>
-    <p id="adTimerText" style="color:#cbd5e1; font-size:14px;">Ad chal raha hai: 5s baaki...</p>
-    <div style="background:#111827; padding:18px; border-radius:10px; margin:14px 0; border:1px dashed #4b5563;">
-      <p style="font-size:13px; color:#9ca3af;">Aapka ad dekhna zarooratmand logo ke support mein madad karta hai!</p>
-    </div>
-    <button class="btn-collect" id="btnCollectCoins" style="display:none;" onclick="grantReward()">Coins Collect Karein (+500)</button>
-  </div>
-</div>
-
-<script>
-  // ==========================================
-  // WEB AUDIO SOUND EFFECTS (No external mp3)
-  // ==========================================
-  let audioCtx = null;
-  function initAudio() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-
-  function playTone(freq, type, duration) {
-    if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
-  }
-
-  function playDiceSound() {
-    initAudio();
-    for(let i = 0; i < 4; i++) {
-      setTimeout(() => playTone(240 + Math.random()*150, "triangle", 0.08), i * 70);
-    }
-  }
-
-  function playMoveSound() {
-    playTone(520, "sine", 0.12);
-  }
-
-  // ==========================================
-  // 15x15 LUDO PATH CELLS MATRIX SETUP
-  // ==========================================
-  const boardEl = document.getElementById("ludoBoard");
-
-  // Track map for Ludo paths
-  const specialCells = {
-    "1_8": "path-green", "2_8": "path-green", "3_8": "path-green", "4_8": "path-green", "5_8": "path-green", "2_9": "path-green",
-    "8_1": "path-red", "8_2": "path-red", "8_3": "path-red", "8_4": "path-red", "8_5": "path-red", "7_2": "path-red",
-    "9_14": "path-yellow", "8_13": "path-yellow", "8_12": "path-yellow", "8_11": "path-yellow", "8_10": "path-yellow", "8_9": "path-yellow",
-    "14_7": "path-blue", "13_8": "path-blue", "12_8": "path-blue", "11_8": "path-blue", "10_8": "path-blue", "9_8": "path-blue"
-  };
-
-  const starCells = ["7_2", "2_9", "9_14", "14_7", "3_7", "7_13", "13_9", "9_3"];
-
-  for (let r = 1; r <= 15; r++) {
-    for (let c = 1; c <= 15; c++) {
-      // Skip home corners & center
-      if ((r <= 6 && c <= 6) || (r <= 6 && c >= 10) || (r >= 10 && c <= 6) || (r >= 10 && c >= 10) || (r >= 7 && r <= 9 && c >= 7 && c <= 9)) {
-        continue;
-      }
-      const cell = document.createElement("div");
-      cell.className = "cell";
-      cell.style.gridRow = r;
-      cell.style.gridColumn = c;
-      const key = `${r}_${c}`;
-
-      if (specialCells[key]) cell.classList.add(specialCells[key]);
-      if (starCells.includes(key)) {
-        const star = document.createElement("span");
-        star.className = "safe-star";
-        star.innerText = "★";
-        cell.appendChild(star);
-      }
-      boardEl.appendChild(cell);
-    }
-  }
-
-  // ==========================================
-  // GAMEPLAY & STEALTH CHEAT SYSTEM
-  // ==========================================
-  const diceSymbols = ["", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
-  let currentTurn = 'red'; // 'red' or 'yellow'
-  let isRolling = false;
-  let lastDiceValue = 6;
-  let redTapCheatCounter = 0;
-  let cheatTimeout = null;
-
-  let p1Coins = 1000;
-  let p2Coins = 1000;
-
-  const diceEl = document.getElementById("ludoDice");
-  const statusEl = document.getElementById("statusMessage");
-  const dockRed = document.getElementById("dockRed");
-  const dockYellow = document.getElementById("dockYellow");
-  const redHomeZone = document.getElementById("redHomeZone");
-
-  // STEALTH CHEAT: Red Home Zone me jitni baar tap karoge, theek wahi aayega (1 se 6)
-  redHomeZone.addEventListener("click", (e) => {
-    // Agar token click nahi hua hai toh cheat counter count karein
-    if (e.target.classList.contains("token")) return;
-
-    redTapCheatCounter++;
-    if (redTapCheatCounter > 6) redTapCheatCounter = 1;
-
-    // Halka sa vibration secret confirmation ke liye
-    if (navigator.vibrate) navigator.vibrate(18);
-
-    clearTimeout(cheatTimeout);
-    // 5 second ke andar dice nahi ghuma toh counter reset
-    cheatTimeout = setTimeout(() => {
-      redTapCheatCounter = 0;
-    }, 5000);
-  });
-
-  function rollDice() {
-    if (isRolling) return;
-    isRolling = true;
-    playDiceSound();
-
-    diceEl.classList.add("dice-rolling");
-
-    let finalRoll = Math.floor(Math.random() * 6) + 1;
-
-    // PRANK CHEAT TRIGGER: Agar Red ka turn hai aur secret taps kiye hain
-    if (currentTurn === 'red' && redTapCheatCounter > 0) {
-      finalRoll = redTapCheatCounter;
-      redTapCheatCounter = 0; // use ho gaya, ab reset
-    }
-
-    setTimeout(() => {
-      diceEl.classList.remove("dice-rolling");
-      diceEl.innerText = diceSymbols[finalRoll];
-      lastDiceValue = finalRoll;
-      isRolling = false;
-
-      statusEl.innerText = `${currentTurn === 'red' ? 'Player 1' : 'Player 2'} ne ${finalRoll} laya! Token chalein.`;
-
-      // Token animation activate
-      highlightTokens(currentTurn);
-
-      // Agar roll 6 na ho aur token na chale toh switch turn
-      setTimeout(() => {
-        switchTurn();
-      }, 1500);
-    }, 450);
-  }
-
-  function highlightTokens(color) {
-    for (let i = 0; i < 4; i++) {
-      const tok = document.getElementById(`${color}_${i}`);
-      if (tok) tok.classList.add("active-bounce");
-    }
-  }
-
-  function handleTokenClick(color, idx) {
-    if (currentTurn !== color) return;
-    playMoveSound();
-
-    for (let i = 0; i < 4; i++) {
-      const tok = document.getElementById(`${color}_${i}`);
-      if (tok) tok.classList.remove("active-bounce");
-    }
-
-    statusEl.innerText = `${color === 'red' ? 'Player 1' : 'Player 2'} ka token move hua!`;
-    switchTurn();
-  }
-
-  function switchTurn() {
-    currentTurn = (currentTurn === 'red') ? 'yellow' : 'red';
-    dockRed.classList.toggle("active-turn", currentTurn === 'red');
-    dockYellow.classList.toggle("active-turn", currentTurn === 'yellow');
-    statusEl.innerText = `${currentTurn === 'red' ? 'Player 1 (Red)' : 'Player 2 (Yellow)'} ki baari! Roll karein.`;
-  }
-
-  // ==========================================
-  // MONETAG REWARDED AD SYSTEM
-  // ==========================================
-  const adModal = document.getElementById("adModal");
-  const adTimerText = document.getElementById("adTimerText");
-  const btnCollectCoins = document.getElementById("btnCollectCoins");
-  let countdown = 5;
-  let timerId = null;
-
-  function openRewardedAd() {
-    // Optional: Agar Monetag ka direct link yahan open karna chahein:
-    // window.open("APNA_MONETAG_DIRECT_LINK", "_blank");
-
-    countdown = 5;
-    btnCollectCoins.style.display = "none";
-    adTimerText.innerText = `Ad chal raha hai: ${countdown}s baaki...`;
-    adModal.style.display = "flex";
-
-    timerId = setInterval(() => {
-      countdown--;
-      if (countdown > 0) {
-        adTimerText.innerText = `Ad chal raha hai: ${countdown}s baaki...`;
-      } else {
-        clearInterval(timerId);
-        adTimerText.innerText = "Ad pura dekhne ke liye shukriya!";
-        btnCollectCoins.style.display = "inline-block";
-      }
-    }, 1000);
-  }
-
-  function grantReward() {
-    adModal.style.display = "none";
-    playTone(650, "sine", 0.3);
-
-    if (currentTurn === 'red') {
-      p1Coins += 500;
-      document.getElementById("p1Coins").innerText = p1Coins;
-    } else {
-      p2Coins += 500;
-      document.getElementById("p2Coins").innerText = p2Coins;
-    }
-
-    statusEl.innerText = `🎉 500 Free Coins credit ho gaye!`;
-  }
-</script>
-
-</body>
-</html>
+      <p style="color:#94a3b8; font-size:11px; margin-top:8px;">Kripya page close na karein, verification
