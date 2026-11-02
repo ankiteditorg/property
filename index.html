@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ludo King Prank Edition</title>
+  <title>Ludo King 3D Edition</title>
 
-  <!-- ================= MONETAG ================= -->
+  <!-- ================= MONETAG VERIFICATION ================= -->
   <meta name="monetag" content="c6daa79e3f2e3bcab64f27ed73751f18">
-  <script src="https://quge5.com/88/tag.min.js" data-zone="304727" async data-cfasync="false"></script>
-  <!-- ============================================ -->
+  <!-- ======================================================== -->
 
   <style>
     * {
@@ -21,68 +20,85 @@
     }
 
     body {
-      background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+      background: radial-gradient(circle at center, #1b2838 0%, #0d121d 100%);
       color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       min-height: 100vh;
       padding: 10px;
       overflow-x: hidden;
     }
 
-    .app-container {
+    .main-wrapper {
       width: 100%;
-      max-width: 440px;
+      max-width: 430px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      gap: 12px;
+      margin: auto 0;
     }
 
-    .ad-banner-top {
+    /* Dedicated Ad Spaces */
+    .ad-slot-top, .ad-slot-bottom {
       width: 100%;
-      height: 44px;
       background: #111827;
-      border: 1px dashed #374151;
-      border-radius: 8px;
+      border: 1.5px dashed #4b5563;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6px;
+      color: #9ca3af;
+      font-size: 11px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .ad-slot-top { height: 48px; }
+    .ad-slot-bottom { height: 55px; }
+
+    /* Wooden Ludo Board Framing */
+    .ludo-frame {
+      width: 100%;
+      max-width: 390px;
+      aspect-ratio: 1 / 1;
+      background: #78350f;
+      padding: 10px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 3px 6px rgba(255,255,255,0.25);
+      border: 4px solid #451a03;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 11px;
-      color: #9ca3af;
+      margin: 0 auto;
     }
 
-    .ludo-frame {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: #8b4513;
-      padding: 10px;
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.8);
-      border: 3px solid #5c2c16;
-    }
-
+    /* 15x15 Matrix Board */
     .board {
       width: 100%;
       height: 100%;
       background: #ffffff;
-      border-radius: 10px;
+      border-radius: 12px;
       display: grid;
       grid-template-columns: repeat(15, 1fr);
       grid-template-rows: repeat(15, 1fr);
       position: relative;
-      border: 2px solid #222;
+      border: 2px solid #1c1917;
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.35);
     }
 
     .cell {
       border: 0.5px solid #d1d5db;
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
+    /* Home Bases (6x6) */
     .home-zone {
       border: 2px solid #111;
       display: flex;
@@ -108,11 +124,12 @@
       grid-template-rows: 1fr 1fr;
       padding: 6px;
       gap: 6px;
+      box-shadow: inset 0 3px 8px rgba(0,0,0,0.3);
     }
 
     .base-slot {
       border-radius: 50%;
-      border: 2px solid #ccc;
+      border: 2px solid #cbd5e1;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -123,6 +140,7 @@
     .slot-blue { background: #dbeafe; }
     .slot-yellow { background: #fef9c3; }
 
+    /* Center Triangle */
     .center-zone {
       grid-column: 7 / 10;
       grid-row: 7 / 10;
@@ -157,6 +175,7 @@
       background: #2563eb;
     }
 
+    /* Colored Tracks */
     .path-red { background: #ef4444 !important; }
     .path-green { background: #22c55e !important; }
     .path-yellow { background: #eab308 !important; }
@@ -168,13 +187,16 @@
       font-weight: 900;
     }
 
+    /* Tokens / Gotiyan */
     .token {
       width: 78%;
       height: 78%;
       border-radius: 50%;
       border: 2px solid #fff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.7);
       cursor: pointer;
+      position: relative;
+      transition: transform 0.15s ease;
       z-index: 10;
     }
     .token.t-red { background: radial-gradient(circle at 35% 35%, #ff4b4b, #991b1b); }
@@ -182,15 +204,26 @@
     .token.t-yellow { background: radial-gradient(circle at 35% 35%, #fde047, #a16207); }
     .token.t-blue { background: radial-gradient(circle at 35% 35%, #60a5fa, #1d4ed8); }
 
+    .token.bounce {
+      animation: hop 0.5s infinite alternate ease-in-out;
+      border-color: #facc15;
+    }
+    @keyframes hop {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-5px) scale(1.15); }
+    }
+
+    /* Controls & Centered 3D Dice */
     .controls-panel {
       width: 100%;
+      max-width: 390px;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       background: #111827;
       padding: 12px;
-      border-radius: 14px;
+      border-radius: 16px;
       border: 1px solid #1f2937;
     }
 
@@ -200,44 +233,65 @@
       align-items: center;
       gap: 4px;
       padding: 8px;
-      border-radius: 10px;
+      border-radius: 12px;
+      background: #1e293b;
       border: 2px solid transparent;
-      background: #1f2937;
     }
-
     .player-dock.active-turn {
       border-color: #38bdf8;
-      background: #1e293b;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
     }
-
-    .player-name {
+    .player-dock span {
       font-size: 12px;
       font-weight: 700;
-      color: #94a3b8;
     }
 
-    .dice-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .dice-3d {
-      width: 74px;
-      height: 74px;
-      background: linear-gradient(145deg, #ffffff, #e6e6e6);
-      border-radius: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 46px;
-      font-weight: 900;
-      color: #1e293b;
+    /* REAL 3D CUBE DICE */
+    .dice-scene {
+      width: 65px;
+      height: 65px;
+      perspective: 400px;
       cursor: pointer;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-      border: 3px solid #facc15;
     }
+
+    .dice-cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: translateZ(-32px) rotateX(-20deg) rotateY(-30deg);
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .dice-face {
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(145deg, #ffffff, #ebebeb);
+      border-radius: 12px;
+      border: 2px solid #cbd5e1;
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
+      display: grid;
+      padding: 6px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      background: #1e293b;
+      border-radius: 50%;
+      margin: auto;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+    }
+    .dot-red { background: #dc2626 !important; }
+
+    /* Face Layouts */
+    .face-1 { transform: rotateY(0deg) translateZ(32px); display: flex; justify-content: center; align-items: center; }
+    .face-6 { transform: rotateY(180deg) translateZ(32px); grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+    .face-2 { transform: rotateY(90deg) translateZ(32px); grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    .face-5 { transform: rotateY(-90deg) translateZ(32px); grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
+    .face-3 { transform: rotateX(90deg) translateZ(32px); grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
+    .face-4 { transform: rotateX(-90deg) translateZ(32px); grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 
     .status-text {
       font-size: 13px;
@@ -247,11 +301,11 @@
       min-height: 20px;
     }
 
-    /* 30-SECOND LOCK MODAL */
+    /* 30-Sec Locker Overlay */
     .game-locker-modal {
       position: fixed;
       inset: 0;
-      background: rgba(10, 15, 29, 0.95);
+      background: rgba(10, 15, 29, 0.96);
       z-index: 999999;
       display: flex;
       flex-direction: column;
@@ -260,7 +314,6 @@
       padding: 20px;
       text-align: center;
     }
-
     .locker-card {
       background: #1e293b;
       border: 2px solid #facc15;
@@ -268,8 +321,8 @@
       padding: 24px 18px;
       max-width: 330px;
       width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
-
     .btn-unlock {
       background: #ef4444;
       color: #fff;
@@ -281,7 +334,6 @@
       cursor: pointer;
       width: 100%;
     }
-
     .btn-play-ready {
       background: #10b981;
       color: #fff;
@@ -297,13 +349,13 @@
 </head>
 <body>
 
-<!-- LOCK MODAL -->
+<!-- 30-SECOND LOCK MODAL -->
 <div id="gameLocker" class="game-locker-modal">
   <div class="locker-card">
     <div style="font-size: 42px; margin-bottom: 8px;">🎲🔒</div>
     <h2 style="color: #facc15; font-size: 18px; margin-bottom: 6px;">Game Locked</h2>
     <p style="color: #cbd5e1; font-size: 12px; margin-bottom: 16px;">
-      Game unlock karne ke liye sponsor link khol kar <b>30 seconds</b> wait karein.
+      Game unlock karne ke liye sponsor ad khol kar <b>30 seconds</b> check karein!
     </p>
 
     <button id="btnOpenAdOffer" class="btn-unlock" onclick="startOfferUnlock()">
@@ -323,17 +375,20 @@
   </div>
 </div>
 
-<div class="app-container">
-  <div class="ad-banner-top">
-    <span>📢 Sponsored Gaming Area</span>
+<div class="main-wrapper">
+  
+  <!-- Top Ad Slot -->
+  <div class="ad-slot-top">
+    <span>📢 <b>SPONSORED TOP BANNER</b></span>
   </div>
 
-  <div class="status-text" id="statusMessage">Player 1 (Red) ki baari! Roll karein</div>
+  <div class="status-text" id="statusMessage">Player 1 (Red) ki baari! 3D Dice roll karein</div>
 
-  <!-- BOARD -->
+  <!-- Wooden Board -->
   <div class="ludo-frame">
     <div class="board" id="ludoBoard">
 
+      <!-- RED HOME ZONE (SECRET CHEAT TRIGGER) -->
       <div class="home-zone home-red" id="redHomeZone">
         <div class="white-box">
           <div class="base-slot slot-red"><div class="token t-red" id="red_0" onclick="handleTokenClick('red', 0)"></div></div>
@@ -343,6 +398,7 @@
         </div>
       </div>
 
+      <!-- GREEN HOME -->
       <div class="home-zone home-green">
         <div class="white-box">
           <div class="base-slot slot-green"><div class="token t-green"></div></div>
@@ -352,8 +408,10 @@
         </div>
       </div>
 
+      <!-- BLUE HOME -->
       <div class="home-zone home-blue"><div class="white-box"></div></div>
 
+      <!-- YELLOW HOME -->
       <div class="home-zone home-yellow">
         <div class="white-box">
           <div class="base-slot slot-yellow"><div class="token t-yellow" id="yellow_0" onclick="handleTokenClick('yellow', 0)"></div></div>
@@ -363,6 +421,7 @@
         </div>
       </div>
 
+      <!-- CENTER ZONE -->
       <div class="center-zone">
         <div class="tri-red"></div>
         <div class="tri-green"></div>
@@ -373,23 +432,119 @@
     </div>
   </div>
 
+  <!-- Controls Panel with 3D Dice -->
   <div class="controls-panel">
     <div class="player-dock active-turn" id="dockRed">
-      <span class="player-name">🔴 PLAYER 1</span>
+      <span style="color:#ef4444;">🔴 P1 (Red)</span>
     </div>
 
-    <div class="dice-container">
-      <div class="dice-3d" id="ludoDice" onclick="rollDice()">⚅</div>
+    <!-- 3D CUBE DICE -->
+    <div class="dice-scene" onclick="rollDice()">
+      <div class="dice-cube" id="diceCube">
+        <div class="dice-face face-1"><div class="dot dot-red" style="width:16px; height:16px;"></div></div>
+        <div class="dice-face face-6">
+          <div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="dice-face face-2">
+          <div class="dot" style="grid-column:1; grid-row:1;"></div>
+          <div class="dot" style="grid-column:2; grid-row:2;"></div>
+        </div>
+        <div class="dice-face face-5">
+          <div class="dot" style="grid-column:1; grid-row:1;"></div>
+          <div class="dot" style="grid-column:3; grid-row:1;"></div>
+          <div class="dot" style="grid-column:2; grid-row:2;"></div>
+          <div class="dot" style="grid-column:1; grid-row:3;"></div>
+          <div class="dot" style="grid-column:3; grid-row:3;"></div>
+        </div>
+        <div class="dice-face face-3">
+          <div class="dot" style="grid-column:1; grid-row:1;"></div>
+          <div class="dot" style="grid-column:2; grid-row:2;"></div>
+          <div class="dot" style="grid-column:3; grid-row:3;"></div>
+        </div>
+        <div class="dice-face face-4">
+          <div class="dot"></div><div class="dot"></div>
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
     </div>
 
     <div class="player-dock" id="dockYellow">
-      <span class="player-name">🟡 PLAYER 2</span>
+      <span style="color:#eab308;">🟡 P2 (Yellow)</span>
     </div>
   </div>
+
+  <!-- Bottom Ad Slot -->
+  <div class="ad-slot-bottom">
+    <span>📢 <b>SPONSORED REWARD AREA</b></span>
+  </div>
+
 </div>
 
 <script>
-  // 15x15 Matrix Track Cells Setup
+  // ==========================================
+  // SIRF 1 BAAR AD DIKHANE KA LOGIC
+  // ==========================================
+  const MONETAG_SCRIPT_URL = "https://quge5.com/88/tag.min.js";
+
+  function injectMonetagOnce() {
+    if (!sessionStorage.getItem("monetagLoaded")) {
+      const script = document.createElement("script");
+      script.src = MONETAG_SCRIPT_URL;
+      script.dataset.zone = "304727";
+      script.async = true;
+      document.head.appendChild(script);
+      sessionStorage.setItem("monetagLoaded", "true");
+    }
+  }
+
+  // ==========================================
+  // WEB AUDIO (Rattle Sound + Puk Puk)
+  // ==========================================
+  let audioCtx = null;
+  function getAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function playDiceRollSound() {
+    const ctx = getAudioCtx();
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(180 + Math.random() * 220, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.06);
+      }, i * 75);
+    }
+  }
+
+  function playGotiPukSound() {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(450, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.09);
+    gain.gain.setValueAtTime(0.25, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.09);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.09);
+  }
+
+  // ==========================================
+  // 15x15 BOARD CELLS CREATION
+  // ==========================================
   const boardEl = document.getElementById("ludoBoard");
   const specialCells = {
     "1_8": "path-green", "2_8": "path-green", "3_8": "path-green", "4_8": "path-green", "5_8": "path-green", "2_9": "path-green",
@@ -420,11 +575,16 @@
     }
   }
 
-  // 30 Seconds Timer System
+  // ==========================================
+  // 30-SECOND AD LOCKER SYSTEM
+  // ==========================================
   let unlockSeconds = 30;
   let unlockTimerInterval = null;
 
   function startOfferUnlock() {
+    getAudioCtx();
+    injectMonetagOnce(); // Pehli baar Monetag ad script activate hogi
+
     document.getElementById("btnOpenAdOffer").style.display = "none";
     document.getElementById("unlockCountdownBox").style.display = "block";
 
@@ -435,10 +595,7 @@
     unlockTimerInterval = setInterval(() => {
       remaining--;
       if (timerText) timerText.innerText = `Offer Verification... ${remaining}s`;
-      if (timerBar) {
-        let percent = ((unlockSeconds - remaining) / unlockSeconds) * 100;
-        timerBar.style.width = percent + "%";
-      }
+      if (timerBar) timerBar.style.width = (((unlockSeconds - remaining) / unlockSeconds) * 100) + "%";
 
       if (remaining <= 0) {
         clearInterval(unlockTimerInterval);
@@ -449,23 +606,25 @@
   }
 
   function unlockGameBoard() {
+    playGotiPukSound();
     document.getElementById("gameLocker").style.display = "none";
   }
 
-  // Gameplay & Prank Tap Cheat
-  const diceSymbols = ["", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+  // ==========================================
+  // 3D DICE & PRANK TAP CHEAT
+  // ==========================================
   let currentTurn = 'red';
   let isRolling = false;
   let redTapCheatCounter = 0;
   let cheatTimeout = null;
 
-  const diceEl = document.getElementById("ludoDice");
+  const diceCube = document.getElementById("diceCube");
   const statusEl = document.getElementById("statusMessage");
   const dockRed = document.getElementById("dockRed");
   const dockYellow = document.getElementById("dockYellow");
   const redHomeZone = document.getElementById("redHomeZone");
 
-  // Red Home Tap Cheat
+  // Red Home Tap-to-Cheat (1 to 6)
   redHomeZone.addEventListener("click", (e) => {
     if (e.target.classList.contains("token")) return;
     redTapCheatCounter++;
@@ -478,9 +637,19 @@
     }, 5000);
   });
 
+  const cubeRotations = {
+    1: { x: 0, y: 0 },
+    6: { x: 0, y: 180 },
+    2: { x: 0, y: -90 },
+    5: { x: 0, y: 90 },
+    3: { x: -90, y: 0 },
+    4: { x: 90, y: 0 }
+  };
+
   function rollDice() {
     if (isRolling) return;
     isRolling = true;
+    playDiceRollSound();
 
     let finalRoll = Math.floor(Math.random() * 6) + 1;
     if (currentTurn === 'red' && redTapCheatCounter > 0) {
@@ -488,23 +657,41 @@
       redTapCheatCounter = 0;
     }
 
-    setTimeout(() => {
-      diceEl.innerText = diceSymbols[finalRoll];
-      isRolling = false;
-      statusEl.innerText = `${currentTurn === 'red' ? 'Player 1' : 'Player 2'} ne ${finalRoll} laya!`;
+    const extraSpins = 720;
+    const target = cubeRotations[finalRoll];
+    diceCube.style.transform = `translateZ(-32px) rotateX(${target.x + extraSpins}deg) rotateY(${target.y + extraSpins}deg)`;
 
-      setTimeout(() => {
-        currentTurn = (currentTurn === 'red') ? 'yellow' : 'red';
-        dockRed.classList.toggle("active-turn", currentTurn === 'red');
-        dockYellow.classList.toggle("active-turn", currentTurn === 'yellow');
-        statusEl.innerText = `${currentTurn === 'red' ? 'Player 1 (Red)' : 'Player 2 (Yellow)'} ki baari!`;
-      }, 1200);
-    }, 300);
+    setTimeout(() => {
+      isRolling = false;
+      statusEl.innerText = `${currentTurn === 'red' ? 'Player 1' : 'Player 2'} ne ${finalRoll} laya! Goti chaliye`;
+      highlightGoti(currentTurn);
+    }, 850);
+  }
+
+  function highlightGoti(color) {
+    for (let i = 0; i < 4; i++) {
+      const g = document.getElementById(`${color}_${i}`);
+      if (g) g.classList.add("bounce");
+    }
   }
 
   function handleTokenClick(color, idx) {
     if (currentTurn !== color) return;
+    playGotiPukSound(); // Classic puk puk sound
+
+    for (let i = 0; i < 4; i++) {
+      const g = document.getElementById(`${color}_${i}`);
+      if (g) g.classList.remove("bounce");
+    }
+
     statusEl.innerText = `${color === 'red' ? 'Player 1' : 'Player 2'} ka token move hua!`;
+
+    setTimeout(() => {
+      currentTurn = (currentTurn === 'red') ? 'yellow' : 'red';
+      dockRed.classList.toggle("active-turn", currentTurn === 'red');
+      dockYellow.classList.toggle("active-turn", currentTurn === 'yellow');
+      statusEl.innerText = `${currentTurn === 'red' ? 'Player 1 (Red)' : 'Player 2 (Yellow)'} ki baari!`;
+    }, 800);
   }
 </script>
 
